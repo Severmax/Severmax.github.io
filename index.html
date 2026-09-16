@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Максим Северенко — Severmax</title>
-  <meta name="description" content="Максим Северенко (Severmax) — Flutter-розробник Android/iOS, ФОП в Україні. Автор гри Boss Tapper." />
+  <meta name="description" content="Максим Северенко (Severmax) — Flutter-розробник Android/iOS. Кейси: Тиша, MyNames, Together Tales, Boss Tapper." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -20,7 +20,7 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html, body { min-height: 100%; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: "Sora", system-ui, sans-serif;
@@ -32,15 +32,25 @@
       line-height: 1.55;
     }
 
-    .frame {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: clamp(1.5rem, 4vw, 3rem);
+    a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      transition: color 0.2s ease, border-color 0.2s ease;
     }
 
-    main {
-      width: min(740px, 100%);
+    a:hover { color: var(--accent); border-color: var(--accent); }
+
+    .wrap {
+      width: min(920px, calc(100% - 2.5rem));
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-content: center;
+      padding: clamp(2rem, 6vw, 4rem) 0;
       animation: rise 0.9s ease both;
     }
 
@@ -65,7 +75,6 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       margin-bottom: 1.75rem;
-      animation: rise 0.9s ease 0.12s both;
     }
 
     .lead {
@@ -74,67 +83,26 @@
       font-weight: 500;
       max-width: 38ch;
       margin-bottom: 1.35rem;
-      animation: rise 0.9s ease 0.2s both;
     }
 
     .bio {
       color: var(--muted);
       max-width: 52ch;
       margin-bottom: 1rem;
-      animation: rise 0.9s ease 0.28s both;
     }
 
     .bio strong { color: var(--ink); font-weight: 600; }
-
-    .facts {
-      list-style: none;
-      margin: 1.4rem 0 2rem;
-      max-width: 52ch;
-      animation: rise 0.9s ease 0.32s both;
-    }
-
-    .facts li {
-      position: relative;
-      padding-left: 1.1rem;
-      color: var(--muted);
-      margin-bottom: 0.55rem;
-    }
-
-    .facts li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.65em;
-      width: 0.4rem;
-      height: 0.4rem;
-      border-radius: 50%;
-      background: var(--accent);
-    }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 0.85rem 1.15rem;
-      animation: rise 0.9s ease 0.36s both;
-    }
-
-    a {
-      color: var(--ink);
-      text-decoration: none;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 0.1rem;
-      transition: color 0.2s ease, border-color 0.2s ease;
-    }
-
-    a:hover {
-      color: var(--accent);
-      border-color: var(--accent);
+      margin-top: 1.75rem;
     }
 
     .cta {
       display: inline-flex;
-      align-items: center;
       background: var(--ink);
       color: #f4f7f5;
       border: none;
@@ -152,52 +120,214 @@
       transform: translateY(-1px);
     }
 
-    footer {
-      margin-top: 3rem;
-      padding-top: 1.25rem;
+    .section {
+      padding: clamp(3rem, 8vw, 5.5rem) 0;
       border-top: 1px solid var(--line);
+    }
+
+    .section h2 {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-lead {
+      color: var(--muted);
+      max-width: 48ch;
+      margin-bottom: 2.25rem;
+    }
+
+    .case {
+      margin-bottom: clamp(2.5rem, 6vw, 4rem);
+      animation: rise 0.8s ease both;
+    }
+
+    .case:last-child { margin-bottom: 0; }
+
+    .case-visual {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 1.15rem;
+      object-fit: cover;
+      max-height: 420px;
+      object-position: center;
+      background: #cfd8d3;
+    }
+
+    .case h3 {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: clamp(1.35rem, 3vw, 1.75rem);
+      margin-bottom: 0.35rem;
+    }
+
+    .case-meta {
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .case p {
+      color: var(--muted);
+      max-width: 62ch;
+      margin-bottom: 0.75rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem 0.7rem;
+      margin-top: 0.85rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .tags span::before {
+      content: "#";
+      opacity: 0.45;
+    }
+
+    .quote {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+      max-width: 36ch;
+      margin-bottom: 0.85rem;
+    }
+
+    .quote-meta { color: var(--muted); font-size: 0.92rem; }
+
+    .langs {
+      display: grid;
+      gap: 0.55rem;
+      color: var(--muted);
+      max-width: 36ch;
+    }
+
+    .langs strong { color: var(--ink); font-weight: 600; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1.5rem 0 2.5rem;
       color: var(--muted);
       font-size: 0.85rem;
-      animation: rise 0.9s ease 0.45s both;
+    }
+
+    @media (max-width: 640px) {
+      .case-visual { max-height: 260px; }
     }
   </style>
 </head>
 <body>
-  <div class="frame">
-    <main>
+  <header class="hero">
+    <div class="wrap">
       <h1 class="brand">Максим Северенко</h1>
       <p class="handle">Severmax · Flutter · Android / iOS</p>
-
-      <p class="lead">Український розробник мобільних застосунків. Пишу на Flutter і веду власні продуктові проєкти.</p>
-
+      <p class="lead">Український розробник мобільних застосунків. Від архітектури й Firebase до релізу в App Store та Google Play.</p>
       <p class="bio">
-        Працюю з мобільними застосунками різного масштабу: від прототипів до релізу в сторах.
-        Зареєстрований як <strong>ФОП в Україні</strong>, беру замовлення та розвиваю власні продукти.
+        Працюю з продуктами різного масштабу: повний цикл з нуля, технічне лідерство в стартапах,
+        підписки, аналітика й чиста Flutter-архітектура. Зареєстрований як <strong>ФОП в Україні</strong>.
       </p>
-
       <p class="bio">
-        Окремо збираю інді-ігри. Актуальний реліз — <strong>Boss Tapper</strong> («Мисливець Дотику»):
-        тап-гра з босами, комбо та лідербордами міста й світу.
+        Власний продукт — <strong>Boss Tapper</strong> («Мисливець Дотику»): тап-гра з босами та лідербордами.
       </p>
-
-      <ul class="facts">
-        <li>Спеціалізація: Flutter для Android і iOS</li>
-        <li>Формат: фриланс, продуктові застосунки, ігри</li>
-        <li>Профілі: LinkedIn, Freelancehunt, GitHub</li>
-      </ul>
-
       <div class="actions">
         <a class="cta" href="mailto:Severmax228@gmail.com">Написати</a>
+        <a href="#cases">Кейси</a>
         <a href="https://www.linkedin.com/in/severmax/">LinkedIn</a>
         <a href="https://freelancehunt.com/freelancer/Severmax.html">Freelancehunt</a>
         <a href="https://github.com/Severmax">GitHub</a>
-        <a href="https://severmax.github.io/bosstapper-privacy/">Privacy — Boss Tapper</a>
       </div>
+    </div>
+  </header>
 
-      <footer>
-        © Максим Северенко (Severmax)
-      </footer>
-    </main>
-  </div>
+  <section class="section" id="cases">
+    <div class="wrap">
+      <h2>Кейси</h2>
+      <p class="section-lead">Обрані проєкти з портфоліо: продукт, роль і технічний фокус.</p>
+
+      <article class="case">
+        <img class="case-visual" src="portfolio/tysha.jpg" alt="Тиша — медитації українською" width="1600" height="900" loading="lazy" />
+        <p class="case-meta">Стартап · iOS / Android · 60 000+ користувачів</p>
+        <h3>Тиша — медитації українською</h3>
+        <p>
+          Розробка, техпідтримка й масштабування мобільного застосунку для сну, релаксу та роботи з тривогою.
+          Перетворював бізнес-вимоги команди на стабільні технічні рішення.
+        </p>
+        <p>
+          Фасад для єдиного логування подій у Mixpanel і Firebase; In-App Purchases і динамічні paywall через RevenueCat;
+          Cloud Functions і Remote Config; pixel-perfect UI з Figma, анімації та UI-kit; внутрішні автотести.
+        </p>
+        <div class="tags">
+          <span>flutter</span><span>firebase</span><span>revenuecat</span><span>mixpanel</span><span>figma</span>
+        </div>
+      </article>
+
+      <article class="case">
+        <img class="case-visual" src="portfolio/mynames.jpg" alt="MyNames — цифрові візитки" width="1600" height="900" loading="lazy" />
+        <p class="case-meta">Lead · повний цикл · App Store + Google Play</p>
+        <h3>MyNames — твоя візитка</h3>
+        <p>
+          Повна розробка й технічне лідерство з нуля: архітектура, реліз і публікація в сторах.
+          Цифрові візитки з QR, повним профілем і актуальними контактами.
+        </p>
+        <p>
+          Firebase з нуля; drag-and-drop редактор візитки; підписки iOS/Android через RevenueCat і webhooks;
+          Sign in with Apple / Google; промо-лендинг застосунку.
+        </p>
+        <div class="tags">
+          <span>flutter</span><span>firebase</span><span>revenuecat</span><span>oauth</span><span>landing</span>
+        </div>
+      </article>
+
+      <article class="case">
+        <img class="case-visual" src="portfolio/together-tales.png" alt="Together Tales — застосунок для пар" width="1600" height="900" loading="lazy" />
+        <p class="case-meta">Ініціатор · MVP · Clean Architecture</p>
+        <h3>Together Tales — застосунок для пар</h3>
+        <p>
+          Мобільний застосунок для зміцнення стосунків через спільні завдання, гейміфікацію та поради.
+          Самостійно пройшов шлях від ідеї й дизайну до працюючого MVP.
+        </p>
+        <p>
+          AuthCubit + Firebase Authentication; зв’язування пари за кодом; щоденні завдання й «привітатися»;
+          Cubit/Bloc, Clean Architecture, Supabase для даних і синхронізації.
+        </p>
+        <div class="tags">
+          <span>flutter</span><span>bloc</span><span>supabase</span><span>firebase</span><span>mvp</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="review">
+    <div class="wrap">
+      <h2>Відгук</h2>
+      <p class="quote">«Якісна та швидка робота. Рекомендую виконавця!»</p>
+      <p class="quote-meta">Серега Бабак · проєкт «Додаток-скан» · 5.0 · Freelancehunt</p>
+    </div>
+  </section>
+
+  <section class="section" id="languages">
+    <div class="wrap">
+      <h2>Мови</h2>
+      <div class="langs">
+        <div><strong>Українська</strong> — носій</div>
+        <div><strong>Русский</strong> — продвинутий</div>
+        <div><strong>English</strong> — середній</div>
+        <div><strong>Slovenčina</strong> — початковий</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      © Максим Северенко (Severmax) ·
+      <a href="https://severmax.github.io/bosstapper-privacy/">Privacy — Boss Tapper</a>
+    </div>
+  </footer>
 </body>
 </html>
