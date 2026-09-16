@@ -713,23 +713,17 @@
       .lead { max-width: 28ch; }
       .hero-mosaic { display: none; }
       .actions {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-wrap: wrap;
         align-items: center;
-        gap: 0.95rem 1rem;
+        gap: 0.95rem 1.25rem;
         margin-top: 1.5rem;
         width: 100%;
       }
       .actions .cta {
-        grid-column: 1 / -1;
         width: 100%;
+        flex: 0 0 100%;
         justify-content: center;
-      }
-      .actions .link-quiet {
-        justify-self: start;
-      }
-      .actions .link-quiet:last-child {
-        justify-self: end;
       }
       .hero-stats {
         display: grid;
