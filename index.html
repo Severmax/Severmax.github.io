@@ -23,7 +23,7 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     body {
       font-family: "Outfit", system-ui, sans-serif;
@@ -39,13 +39,10 @@
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.35;
-      background-image:
-        url("portfolio/hero-atmosphere.jpg"),
-        radial-gradient(900px 500px at 80% 10%, rgba(143, 106, 58, 0.12), transparent 60%);
-      background-size: cover, auto;
-      background-position: center top, center;
-      filter: saturate(0.85) contrast(1.05);
+      background:
+        radial-gradient(900px 520px at 12% -8%, rgba(143, 106, 58, 0.14), transparent 58%),
+        radial-gradient(780px 480px at 92% 8%, rgba(47, 90, 86, 0.1), transparent 55%),
+        linear-gradient(165deg, #f5f2ec 0%, #ebe7df 48%, #e4efe9 100%);
     }
 
     body::after {
@@ -54,7 +51,7 @@
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.045;
+      opacity: 0.04;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
@@ -97,13 +94,10 @@
     .hero {
       min-height: calc(100vh - 4rem);
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: clamp(1.5rem, 4vw, 3.5rem);
-      align-items: end;
+      align-content: center;
       padding: clamp(2.5rem, 7vw, 5rem) 0 clamp(3rem, 8vw, 5.5rem);
+      animation: fadeUp 1s ease 0.08s both;
     }
-
-    .hero-copy { animation: fadeUp 1s ease 0.08s both; }
 
     .eyebrow {
       display: inline-flex;
@@ -188,73 +182,9 @@
 
     .link-quiet:hover { color: var(--accent-deep); border-color: var(--accent); }
 
-    .hero-aside {
-      position: relative;
-      animation: fadeUp 1.1s ease 0.18s both;
-    }
-
-    .hero-frame {
-      position: relative;
-      overflow: hidden;
-      border-radius: 2px;
-      aspect-ratio: 4 / 5;
-      background: #d9d4cb;
-      box-shadow: 0 30px 80px rgba(20, 24, 28, 0.14);
-    }
-
-    .hero-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transform: scale(1.02);
-      transition: transform 1.4s ease;
-    }
-
-    .hero-frame:hover img { transform: scale(1.06); }
-
-    .hero-badge {
-      position: absolute;
-      left: 1rem;
-      bottom: 1rem;
-      right: 1rem;
-      padding: 0.95rem 1rem;
-      background: var(--panel);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      font-size: 0.86rem;
-      color: var(--ink-soft);
-    }
-
-    .hero-badge strong {
-      display: block;
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 1.25rem;
-      color: var(--ink);
-      font-weight: 600;
-      margin-bottom: 0.15rem;
-    }
-
-    .decor-float {
-      position: absolute;
-      width: min(220px, 42%);
-      right: -8%;
-      top: -8%;
-      border-radius: 50%;
-      opacity: 0.9;
-      mix-blend-mode: multiply;
-      animation: drift 8s ease-in-out infinite;
-      pointer-events: none;
-    }
-
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(22px); }
       to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes drift {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(10px) rotate(4deg); }
     }
 
     .section {
@@ -445,7 +375,6 @@
     footer a:hover { color: var(--accent-deep); border-color: var(--accent); }
 
     @media (max-width: 860px) {
-      .hero,
       .case,
       .case:nth-child(even) {
         grid-template-columns: 1fr;
@@ -460,7 +389,6 @@
       .section-head { grid-template-columns: 1fr; }
       .section-head p { text-align: left; }
       .langs { grid-template-columns: 1fr 1fr; }
-      .decor-float { width: 140px; right: -4%; top: -6%; }
     }
 
     @media (max-width: 520px) {
@@ -476,40 +404,26 @@
         <span>Severmax</span>
         <div class="nav-links">
           <a href="#cases">Кейси</a>
-          <a href="#review">Відгук</a>
           <a href="https://www.linkedin.com/in/severmax/">LinkedIn</a>
           <a href="https://freelancehunt.com/freelancer/Severmax.html">Freelancehunt</a>
         </div>
       </nav>
 
       <header class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Flutter · Android / iOS · ФОП Україна</p>
-          <h1 class="brand">Максим Северенко</h1>
-          <p class="lead">Мобільні продукти з відчуттям якості — від ідеї до сторів.</p>
-          <p class="bio">
-            Розробляю застосунки на Flutter: архітектура, Firebase, підписки, аналітика та реліз.
-            Беру повний цикл або технічне лідерство в команді.
-          </p>
-          <p class="bio">
-            Власний продукт — <strong>Boss Tapper</strong> («Мисливець Дотику»).
-          </p>
-          <div class="actions">
-            <a class="cta" href="mailto:Severmax228@gmail.com">Обговорити проєкт</a>
-            <a class="link-quiet" href="#cases">Дивитись кейси</a>
-          </div>
+        <p class="eyebrow">Flutter · Android / iOS · ФОП Україна</p>
+        <h1 class="brand">Максим Северенко</h1>
+        <p class="lead">Мобільні продукти з відчуттям якості — від ідеї до сторів.</p>
+        <p class="bio">
+          Розробляю застосунки на Flutter: архітектура, Firebase, підписки, аналітика та реліз.
+          Беру повний цикл або технічне лідерство в команді.
+        </p>
+        <p class="bio">
+          Власний продукт — <strong>Boss Tapper</strong> («Мисливець Дотику»).
+        </p>
+        <div class="actions">
+          <a class="cta" href="mailto:Severmax228@gmail.com">Обговорити проєкт</a>
+          <a class="link-quiet" href="#cases">Дивитись кейси</a>
         </div>
-
-        <aside class="hero-aside">
-          <img class="decor-float" src="portfolio/decor-ribbons.jpg" alt="" aria-hidden="true" />
-          <div class="hero-frame">
-            <img src="portfolio/tysha.jpg" alt="Приклад роботи — застосунок Тиша" />
-            <div class="hero-badge">
-              <strong>Selected work</strong>
-              Тиша · 60 000+ користувачів
-            </div>
-          </div>
-        </aside>
       </header>
     </div>
 
@@ -598,7 +512,7 @@
         <div class="quote-block">
           <div class="quote-mark" aria-hidden="true">“</div>
           <p class="quote">Якісна та швидка робота. Рекомендую виконавця!</p>
-          <p class="quote-meta">Серега Бабак · «Додаток-скан» · 5.0</p>
+          <p class="quote-meta">Сергій Бабак · «Додаток-скан» · 5.0</p>
         </div>
       </div>
     </section>
