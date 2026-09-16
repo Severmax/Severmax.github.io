@@ -102,6 +102,32 @@
 
     .hero-copy { animation: fadeUp 1s ease 0.08s both; }
 
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: clamp(1rem, 2.5vw, 1.45rem);
+      margin-bottom: 1.1rem;
+    }
+
+    .avatar {
+      flex: 0 0 auto;
+      width: clamp(4.6rem, 9vw, 6.1rem);
+      height: clamp(4.6rem, 9vw, 6.1rem);
+      border-radius: 50%;
+      overflow: hidden;
+      background: #e8e4dc;
+      border: 1px solid rgba(20, 24, 28, 0.08);
+      box-shadow: 0 10px 28px rgba(20, 24, 28, 0.1);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      display: block;
+    }
+
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -124,11 +150,11 @@
     .brand {
       font-family: "Cormorant Garamond", Georgia, serif;
       font-weight: 600;
-      font-size: clamp(3.2rem, 8vw, 5.6rem);
+      font-size: clamp(3rem, 7.2vw, 5.2rem);
       line-height: 0.92;
       letter-spacing: -0.03em;
-      margin-bottom: 1.1rem;
       max-width: 10ch;
+      margin-bottom: 0;
     }
 
     .lead {
@@ -252,7 +278,7 @@
     }
 
     .hero-mosaic figure:nth-child(2) img {
-      object-position: 88% center;
+      object-position: 95% center;
     }
 
     .hero-mosaic figure:nth-child(3) img {
@@ -523,7 +549,12 @@
       <header class="hero">
         <div class="hero-copy">
           <p class="eyebrow">Flutter · Android / iOS · ФОП Україна</p>
-          <h1 class="brand">Максим Северенко</h1>
+          <div class="brand-row">
+            <div class="avatar">
+              <img src="portfolio/avatar.png" alt="Аватар Максима Северенка" width="160" height="160" />
+            </div>
+            <h1 class="brand">Максим Северенко</h1>
+          </div>
           <p class="lead">Мобільні продукти з відчуттям якості — від ідеї до сторів.</p>
           <p class="bio">
             Розробляю кросплатформні застосунки на Flutter для Android та iOS.
