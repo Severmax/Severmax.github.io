@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maxim — Severmax</title>
-  <meta name="description" content="Maxim (Severmax) — інді-розробник ігор. Автор Boss Tapper." />
+  <title>Максим Северенко — Severmax</title>
+  <meta name="description" content="Максим Северенко (Severmax) — Flutter-розробник Android/iOS, ФОП в Україні. Автор гри Boss Tapper." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -20,9 +20,7 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html, body {
-      min-height: 100%;
-    }
+    html, body { min-height: 100%; }
 
     body {
       font-family: "Sora", system-ui, sans-serif;
@@ -42,7 +40,7 @@
     }
 
     main {
-      width: min(720px, 100%);
+      width: min(740px, 100%);
       animation: rise 0.9s ease both;
     }
 
@@ -54,9 +52,9 @@
     .brand {
       font-family: "Fraunces", Georgia, serif;
       font-weight: 700;
-      font-size: clamp(3.2rem, 10vw, 5.4rem);
+      font-size: clamp(2.6rem, 8vw, 4.6rem);
       letter-spacing: -0.03em;
-      line-height: 0.95;
+      line-height: 0.98;
       margin-bottom: 0.35rem;
     }
 
@@ -72,28 +70,52 @@
 
     .lead {
       font-family: "Fraunces", Georgia, serif;
-      font-size: clamp(1.25rem, 2.6vw, 1.55rem);
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
       font-weight: 500;
-      max-width: 34ch;
-      margin-bottom: 1.25rem;
+      max-width: 38ch;
+      margin-bottom: 1.35rem;
       animation: rise 0.9s ease 0.2s both;
     }
 
     .bio {
       color: var(--muted);
-      max-width: 48ch;
-      margin-bottom: 1.1rem;
+      max-width: 52ch;
+      margin-bottom: 1rem;
       animation: rise 0.9s ease 0.28s both;
     }
 
-    .bio + .bio {
-      margin-bottom: 2rem;
+    .bio strong { color: var(--ink); font-weight: 600; }
+
+    .facts {
+      list-style: none;
+      margin: 1.4rem 0 2rem;
+      max-width: 52ch;
+      animation: rise 0.9s ease 0.32s both;
+    }
+
+    .facts li {
+      position: relative;
+      padding-left: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 0.55rem;
+    }
+
+    .facts li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.65em;
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 50%;
+      background: var(--accent);
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem 1rem;
+      align-items: center;
+      gap: 0.85rem 1.15rem;
       animation: rise 0.9s ease 0.36s both;
     }
 
@@ -113,7 +135,6 @@
     .cta {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
       background: var(--ink);
       color: #f4f7f5;
       border: none;
@@ -144,29 +165,37 @@
 <body>
   <div class="frame">
     <main>
-      <h1 class="brand">Maxim</h1>
-      <p class="handle">Severmax</p>
+      <h1 class="brand">Максим Северенко</h1>
+      <p class="handle">Severmax · Flutter · Android / iOS</p>
 
-      <p class="lead">Інді-розробник ігор. Роблю прості, швидкі мобільні проєкти з нуля.</p>
+      <p class="lead">Український розробник мобільних застосунків. Пишу на Flutter і веду власні продуктові проєкти.</p>
 
       <p class="bio">
-        Мене звати Maxim. Під ніком Severmax збираю ігри самостійно: ідею, код, дизайн і публікацію.
-        Зараз у фокусі Android і Google Play.
+        Працюю з мобільними застосунками різного масштабу: від прототипів до релізу в сторах.
+        Зареєстрований як <strong>ФОП в Україні</strong>, беру замовлення та розвиваю власні продукти.
       </p>
 
       <p class="bio">
-        Мій актуальний проєкт — <strong>Boss Tapper</strong> («Мисливець Дотику»): тап-гра з босами,
-        комбо та таблицею лідерів міста й світу.
+        Окремо збираю інді-ігри. Актуальний реліз — <strong>Boss Tapper</strong> («Мисливець Дотику»):
+        тап-гра з босами, комбо та лідербордами міста й світу.
       </p>
+
+      <ul class="facts">
+        <li>Спеціалізація: Flutter для Android і iOS</li>
+        <li>Формат: фриланс, продуктові застосунки, ігри</li>
+        <li>Профілі: LinkedIn, Freelancehunt, GitHub</li>
+      </ul>
 
       <div class="actions">
         <a class="cta" href="mailto:Severmax228@gmail.com">Написати</a>
+        <a href="https://www.linkedin.com/in/severmax/">LinkedIn</a>
+        <a href="https://freelancehunt.com/freelancer/Severmax.html">Freelancehunt</a>
         <a href="https://github.com/Severmax">GitHub</a>
         <a href="https://severmax.github.io/bosstapper-privacy/">Privacy — Boss Tapper</a>
       </div>
 
       <footer>
-        © Maxim (Severmax)
+        © Максим Северенко (Severmax)
       </footer>
     </main>
   </div>
