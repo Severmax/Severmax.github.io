@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="meta.title.tiktok">TikTok Live Tower Defense — Максим Северенко</title>
+  <meta name="description" content="TikTok Live Tower Defense — інтерактивна TD-гра для стрімів: глядачі спавнять монстрів, герой захищає місто. Проєкт на паузі, можливий продаж прав." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <div class="wrap">
+      <nav class="nav">
+        <a href="index.html">Severmax</a>
+        <div class="nav-links">
+          <a href="index.html#cases" data-i18n="nav.cases">Кейси</a>
+          <a href="products.html" data-i18n="nav.products">Власні продукти</a>
+          <a href="https://github.com/Severmax">GitHub</a>
+          <a href="https://www.linkedin.com/in/severmax/">LinkedIn</a>
+          <a href="https://freelancehunt.com/freelancer/Severmax.html">Freelancehunt</a>
+          <button type="button" class="lang-switch" data-lang-switch>EN</button>
+        </div>
+      </nav>
+
+      <a class="back" href="products.html" data-i18n="tiktok.back">← Усі продукти</a>
+
+      <header class="detail-hero">
+        <p class="eyebrow" data-i18n="tiktok.meta">Гра · TikTok LIVE · Flutter / Flame</p>
+        <h1>TikTok Live Tower Defense</h1>
+        <p class="lead" data-i18n="tiktok.lead">Інтерактивна tower defense для ефіру: глядачі впливають на бій у реальному часі.</p>
+      </header>
+
+      <div class="detail-layout">
+        <div class="detail-visual detail-visual--embed">
+          <iframe
+            class="tiktok-frame"
+            src="https://www.tiktok.com/player/v1/7668807887749188871?autoplay=0&music_info=0&description=0"
+            title="TikTok Live Tower Defense — геймплей"
+            allow="fullscreen; encrypted-media"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+          <p style="margin-top:0.75rem;text-align:center;">
+            <a class="link-quiet" href="https://www.tiktok.com/@darknessn32/video/7668807887749188871" target="_blank" rel="noopener noreferrer" data-i18n="tiktok.open">Відкрити в TikTok</a>
+          </p>
+        </div>
+
+        <div class="detail-copy">
+          <h2 data-i18n="tiktok.about">Про продукт</h2>
+          <p data-i18n="tiktok.about_p">
+            Гра для стрімерів TikTok LIVE у форматі 9:16 під OBS. Глядачі спавнять монстрів
+            через ефір (коментарі, лайки→meter, гіфти), а автономний герой
+            сам цілиться й захищає місто. Стрімер у бій не втручається — тримає ефір і керує
+            сесією з окремої адмін-панелі.
+          </p>
+
+          <h2 data-i18n="tiktok.gameplay">Геймплей</h2>
+          <ul>
+            <li data-i18n="tiktok.g1">Одне місто з HP внизу екрана; монстри йдуть вертикальною доріжкою зверху вниз</li>
+            <li data-i18n="tiktok.g2">Типи монстрів: weak / strong / boss; нік глядача над юнітом</li>
+            <li data-i18n="tiktok.g3">Герой стоїть збоку перед містом і стріляє автоматично</li>
+            <li data-i18n="tiktok.g4">Heal-гіфт може підлатати місто; HP = 0 → кінець раунду</li>
+            <li data-i18n="tiktok.g5">Рестарт і спавн — з Admin-вікна (не в стрімі)</li>
+          </ul>
+
+          <h2 data-i18n="tiktok.streamer">Для стрімера</h2>
+          <ul>
+            <li data-i18n="tiktok.s1">Game-вікно 9:16 для Window Capture в OBS</li>
+            <li data-i18n="tiktok.s2">Окрема Admin-панель: спавн, рестарт, статус LIVE</li>
+            <li data-i18n="tiktok.s3">Підключення LIVE webhook / like meter</li>
+            <li data-i18n="tiktok.s4">Мапінг TikTok-подій на типи монстрів (gift map)</li>
+          </ul>
+
+          <h2 data-i18n="tiktok.tech">Технології</h2>
+          <ul>
+            <li data-i18n="tiktok.t1">Flutter Desktop (macOS) — app shell і два вікна</li>
+            <li data-i18n="tiktok.t2">Flame — ігровий цикл, спрайти, колізії</li>
+            <li data-i18n="tiktok.t3">LiveEventSource — mock і TikTok connector через event stream</li>
+            <li data-i18n="tiktok.t4">Spawn queue — тротлінг спавну без блокування game loop</li>
+          </ul>
+
+          <h2 data-i18n="tiktok.status">Статус і продаж</h2>
+          <p class="sale-note" data-i18n="tiktok.status_p">
+            Зараз проєкт не розвивається.
+            Готове ядро гри + Admin + LIVE-інтеграція (phase 0–6 майже закриті).
+            Можу продати права власності за фіксовану суму або за відсоток від майбутнього доходу
+            (revenue share) — якщо цікаво запустити продукт далі або інтегрувати у свій стрім-бренд.
+          </p>
+
+          <div class="tags">
+            <span>#flutter</span><span>#flame</span><span>#tiktok</span><span>#live</span><span>#obs</span><span>#gamedev</span>
+          </div>
+
+          <div class="product-links">
+            <a class="cta" href="https://t.me/Severmax7" target="_blank" rel="noopener noreferrer" data-i18n="tiktok.write_tg">Написати в Telegram</a>
+            <a class="link-quiet" href="mailto:severenko.maxim@gmail.com">severenko.maxim@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <span>© Максим Северенко (Severmax)</span>
+        <span>
+          <a href="products.html" data-i18n="nav.products">Власні продукти</a>
+          ·
+          <a href="boss-tapper.html">Boss Tapper</a>
+        </span>
+      </footer>
+    </div>
+  </div>
+  <script src="i18n.js"></script>
+</body>
+</html>

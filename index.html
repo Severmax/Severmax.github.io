@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Максим Северенко — Severmax</title>
-  <meta name="description" content="Максим Северенко (Severmax) — Flutter-розробник Android/iOS. Кейси: Тиша, MyNames, Together Tales, Boss Tapper." />
+  <title data-i18n="meta.title.home">Максим Северенко — Severmax</title>
+  <meta name="description" content="Максим Северенко (Severmax) — Flutter-розробник Android/iOS/Web. Кейси: Тиша, MyNames, MyNames Web, Together Tales." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -89,6 +89,26 @@
       display: flex;
       gap: 1.25rem;
       flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .lang-switch {
+      appearance: none;
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--ink-soft);
+      font: inherit;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.55rem;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+
+    .lang-switch:hover {
+      color: var(--accent-deep);
+      border-color: rgba(143, 106, 58, 0.45);
     }
 
     .hero {
@@ -109,15 +129,94 @@
       margin-bottom: 1.1rem;
     }
 
-    .avatar {
+    .avatar-wrap {
+      position: relative;
       flex: 0 0 auto;
-      width: clamp(4.6rem, 9vw, 6.1rem);
-      height: clamp(4.6rem, 9vw, 6.1rem);
+      width: clamp(5.4rem, 10vw, 7.1rem);
+      height: clamp(5.4rem, 10vw, 7.1rem);
+      display: grid;
+      place-items: center;
+    }
+
+    .avatar-wrap::before,
+    .avatar-wrap::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .avatar-wrap::before {
+      inset: 0;
+      border: 1px solid rgba(143, 106, 58, 0.35);
+      animation: avatarPulse 5.5s ease-in-out infinite;
+    }
+
+    .avatar-wrap::after {
+      inset: 0.38rem;
+      border: 1px dashed rgba(47, 90, 86, 0.28);
+      transform: rotate(-8deg);
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -0.4rem;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 210deg,
+        rgba(143, 106, 58, 0.65),
+        transparent 28%,
+        rgba(47, 90, 86, 0.5) 52%,
+        transparent 78%,
+        rgba(143, 106, 58, 0.45)
+      );
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.4px));
+      mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.4px));
+      pointer-events: none;
+      animation: avatarSpin 18s linear infinite;
+    }
+
+    @keyframes avatarSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes avatarPulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.035); opacity: 1; }
+    }
+
+    .avatar-dot {
+      position: absolute;
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(143, 106, 58, 0.15);
+      pointer-events: none;
+    }
+
+    .avatar-dot--a { top: 0.35rem; right: 0.55rem; }
+    .avatar-dot--b {
+      bottom: 0.55rem;
+      left: 0.2rem;
+      background: var(--teal);
+      box-shadow: 0 0 0 3px rgba(47, 90, 86, 0.14);
+      width: 0.34rem;
+      height: 0.34rem;
+    }
+
+    .avatar {
+      position: relative;
+      z-index: 1;
+      width: clamp(4.4rem, 8.4vw, 5.8rem);
+      height: clamp(4.4rem, 8.4vw, 5.8rem);
       border-radius: 50%;
       overflow: hidden;
       background: #e8e4dc;
-      border: 1px solid rgba(20, 24, 28, 0.08);
-      box-shadow: 0 10px 28px rgba(20, 24, 28, 0.1);
+      border: 2px solid rgba(255, 252, 247, 0.95);
+      box-shadow:
+        0 12px 28px rgba(20, 24, 28, 0.12),
+        0 0 0 6px rgba(143, 106, 58, 0.08);
     }
 
     .avatar img {
@@ -225,6 +324,9 @@
       font-size: 0.9rem;
       font-weight: 500;
       letter-spacing: 0.02em;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
     }
 
     .cta:hover { background: var(--accent-deep); color: #fff; }
@@ -237,6 +339,98 @@
     }
 
     .link-quiet:hover { color: var(--accent-deep); border-color: var(--accent); }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: grid;
+      place-items: center;
+      padding: 1.25rem;
+      background: rgba(20, 24, 28, 0.42);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .modal.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      width: min(420px, 100%);
+      background: #fbf8f2;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 1.45rem 1.4rem 1.3rem;
+      box-shadow: 0 24px 60px rgba(20, 24, 28, 0.22);
+      transform: translateY(10px);
+      transition: transform 0.22s ease;
+    }
+
+    .modal.is-open .modal-card { transform: translateY(0); }
+
+    .modal-card h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.85rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.02em;
+    }
+
+    .modal-card > p {
+      color: var(--muted);
+      font-weight: 300;
+      font-size: 0.95rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .modal-options {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .modal-option {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background: rgba(255, 252, 247, 0.8);
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .modal-option:hover {
+      border-color: rgba(143, 106, 58, 0.45);
+      background: #fff;
+      color: inherit;
+    }
+
+    .modal-option strong {
+      font-weight: 500;
+      font-size: 0.98rem;
+    }
+
+    .modal-option span {
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 300;
+    }
+
+    .modal-close {
+      margin-top: 1rem;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font: inherit;
+      cursor: pointer;
+      border-bottom: 1px solid var(--line);
+      padding: 0.15rem 0;
+    }
+
+    .modal-close:hover { color: var(--accent-deep); border-color: var(--accent); }
 
     .hero-panel {
       animation: fadeUp 1.05s ease 0.16s both;
@@ -527,7 +721,7 @@
     }
 
     @media (max-width: 520px) {
-      .nav-links { display: none; }
+      .nav-links a { display: none; }
       .langs { grid-template-columns: 1fr; }
     }
   </style>
@@ -538,42 +732,47 @@
       <nav class="nav">
         <span>Severmax</span>
         <div class="nav-links">
-          <a href="#cases">Кейси</a>
-          <a href="products.html">Власні продукти</a>
+          <a href="#cases" data-i18n="nav.cases">Кейси</a>
+          <a href="products.html" data-i18n="nav.products">Власні продукти</a>
           <a href="https://github.com/Severmax">GitHub</a>
           <a href="https://www.linkedin.com/in/severmax/">LinkedIn</a>
           <a href="https://freelancehunt.com/freelancer/Severmax.html">Freelancehunt</a>
+          <button type="button" class="lang-switch" data-lang-switch>EN</button>
         </div>
       </nav>
 
       <header class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">Flutter · Android / iOS · ФОП Україна</p>
+          <p class="eyebrow" data-i18n="home.eyebrow">Flutter · Android / iOS · ФОП Україна</p>
           <div class="brand-row">
-            <div class="avatar">
-              <img src="portfolio/avatar.png" alt="Аватар Максима Северенка" width="160" height="160" />
+            <div class="avatar-wrap" aria-hidden="false">
+              <span class="avatar-ring" aria-hidden="true"></span>
+              <span class="avatar-dot avatar-dot--a" aria-hidden="true"></span>
+              <span class="avatar-dot avatar-dot--b" aria-hidden="true"></span>
+              <div class="avatar">
+                <img src="portfolio/avatar.png" alt="Максим Северенко / Maksym Severenko" width="160" height="160" />
+              </div>
             </div>
             <h1 class="brand">Максим Северенко</h1>
           </div>
-          <p class="lead">Мобільні продукти з відчуттям якості — від ідеї до сторів.</p>
-          <p class="bio">
+          <p class="lead" data-i18n="home.lead">Мобільні продукти з відчуттям якості — від ідеї до публікації.</p>
+          <p class="bio" data-i18n="home.bio1">
             Розробляю кросплатформні застосунки на Flutter для Android та iOS.
             Закриваю повний цикл: архітектура, UI за макетами, Firebase / бекенд-інтеграції,
             авторизацію, підписки, аналітику та публікацію в App Store і Google Play.
           </p>
           <p class="bio">
-            Працюю з продуктами різного масштабу — від MVP до застосунків із тисячами користувачів.
-            Окремо розвиваю <a class="link-quiet" href="products.html">власні продукти</a>.
+            <span data-i18n="home.bio2_before">Працюю з продуктами різного масштабу — від MVP до застосунків із тисячами користувачів. Окремо розвиваю </span><a class="link-quiet" href="products.html" data-i18n="home.bio2_link">власні продукти</a><span data-i18n="home.bio2_after">.</span>
           </p>
           <ul class="focus-list">
-            <li>Монетизація: RevenueCat, In-App Purchases, динамічні paywall</li>
-            <li>Дані й інфра: Firebase, Supabase, Cloud Functions, Remote Config</li>
-            <li>Якість: Clean Architecture, Bloc/Cubit, тести, стабільні релізи</li>
+            <li data-i18n="home.focus1">Монетизація: RevenueCat, In-App Purchases, динамічні paywall</li>
+            <li data-i18n="home.focus2">Дані й інфра: Firebase, Supabase, Cloud Functions, Remote Config</li>
+            <li data-i18n="home.focus3">Якість: Clean Architecture, Bloc/Cubit, тести, стабільні релізи</li>
           </ul>
           <div class="actions">
-            <a class="cta" href="mailto:Severmax228@gmail.com">Обговорити проєкт</a>
-            <a class="link-quiet" href="#cases">Дивитись кейси</a>
-            <a class="link-quiet" href="products.html">Власні продукти</a>
+            <button class="cta" type="button" id="open-contact" data-i18n="home.write">Написати</button>
+            <a class="link-quiet" href="#cases" data-i18n="home.see_cases">Дивитись кейси</a>
+            <a class="link-quiet" href="products.html" data-i18n="home.own_products">Власні продукти</a>
           </div>
         </div>
 
@@ -590,9 +789,9 @@
             </figure>
           </div>
           <div class="hero-stats">
-            <div class="stat"><strong>60k+</strong><span>користувачів</span></div>
-            <div class="stat"><strong>iOS</strong><span>&amp; Android</span></div>
-            <div class="stat"><strong>Flutter</strong><span>фокус</span></div>
+            <div class="stat"><strong>60k+</strong><span data-i18n="home.stat_users">користувачів</span></div>
+            <div class="stat"><strong>iOS</strong><span data-i18n="home.stat_platforms">&amp; Android</span></div>
+            <div class="stat"><strong>Flutter</strong><span data-i18n="home.stat_focus">фокус</span></div>
           </div>
         </aside>
       </header>
@@ -601,23 +800,23 @@
     <section class="section" id="cases">
       <div class="wrap">
         <div class="section-head">
-          <h2>Кейси</h2>
-          <p>Продукти, де важливі стабільність, монетизація і акуратний UX.</p>
+          <h2 data-i18n="cases.title">Кейси</h2>
+          <p data-i18n="cases.lead">Продукти, де важливі стабільність, монетизація і акуратний UX.</p>
         </div>
 
         <article class="case">
           <div class="case-media">
             <span class="case-index">01</span>
-            <img src="portfolio/tysha.jpg" alt="Тиша — медитації українською" loading="lazy" />
+            <img src="portfolio/tysha.jpg" alt="Тиша" loading="lazy" />
           </div>
           <div class="case-body">
-            <p class="case-meta">Стартап · iOS / Android · 60 000+</p>
-            <h3>Тиша — медитації українською</h3>
-            <p>
+            <p class="case-meta" data-i18n="case.tysha.meta">Стартап · iOS / Android · 60 000+</p>
+            <h3 data-i18n="case.tysha.title">Тиша — медитації українською</h3>
+            <p data-i18n="case.tysha.p1">
               Мобільний застосунок з медитаціями: практики для спокою, роботи з тривогою
               та щоденної турботи про психічне здоров’я.
             </p>
-            <p>
+            <p data-i18n="case.tysha.p2">
               Розробка, техпідтримка й масштабування. Єдине логування подій у Mixpanel і Firebase,
               підписки та динамічні paywall через RevenueCat, Cloud Functions, Remote Config,
               pixel-perfect UI з Figma та внутрішні автотести.
@@ -631,16 +830,16 @@
         <article class="case">
           <div class="case-media">
             <span class="case-index">02</span>
-            <img src="portfolio/mynames.jpg" alt="MyNames — цифрові візитки" loading="lazy" />
+            <img src="portfolio/mynames.jpg" alt="MyNames" loading="lazy" />
           </div>
           <div class="case-body">
-            <p class="case-meta">Lead · повний цикл · App Store + Google Play</p>
-            <h3>MyNames — твоя візитка</h3>
-            <p>
+            <p class="case-meta" data-i18n="case.mynames.meta">Lead · повний цикл · App Store + Google Play</p>
+            <h3 data-i18n="case.mynames.title">MyNames — твоя візитка</h3>
+            <p data-i18n="case.mynames.p1">
               Цифрові візитки з QR і живим профілем. Повна розробка з нуля —
               від архітектури до публікації в сторах.
             </p>
-            <p>
+            <p data-i18n="case.mynames.p2">
               Firebase, drag-and-drop редактор, RevenueCat + webhooks, Sign in with Apple/Google
               і промо-лендинг продукту.
             </p>
@@ -653,16 +852,38 @@
         <article class="case">
           <div class="case-media">
             <span class="case-index">03</span>
-            <img src="portfolio/together-tales.png" alt="Together Tales — застосунок для пар" loading="lazy" />
+            <img src="portfolio/mynames-web.jpg" alt="MyNames Web" loading="lazy" />
           </div>
           <div class="case-body">
-            <p class="case-meta">Ініціатор · MVP · Clean Architecture</p>
-            <h3>Together Tales — застосунок для пар</h3>
-            <p>
+            <p class="case-meta" data-i18n="case.mynames_web.meta">Flutter Web · кабінет · my-names.com.ua</p>
+            <h3 data-i18n="case.mynames_web.title">MyNames Web</h3>
+            <p data-i18n="case.mynames_web.p1">
+              Веб-кабінет для керування цифровими візитками, QR-кодами та статистикою.
+              Split-screen логін з Google / Apple, спільні дані з мобільним застосунком через Firestore.
+            </p>
+            <p data-i18n="case.mynames_web.p2">
+              Desktop-first UX: візитки, архів, налаштування, редактор із live preview,
+              аналітика (перегляди, шери, QR, кліки), тарифи та оплата через RevenueCat Web Billing.
+            </p>
+            <div class="tags">
+              <span>#flutterweb</span><span>#firebase</span><span>#oauth</span><span>#revenuecat</span><span>#analytics</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-media">
+            <span class="case-index">04</span>
+            <img src="portfolio/together-tales.png" alt="Together Tales" loading="lazy" />
+          </div>
+          <div class="case-body">
+            <p class="case-meta" data-i18n="case.tt.meta">Ініціатор · MVP · Clean Architecture</p>
+            <h3 data-i18n="case.tt.title">Together Tales — застосунок для пар</h3>
+            <p data-i18n="case.tt.p1">
               Гейміфікований застосунок для пар: спільні завдання, поради та «привітатися»
               одним дотиком. Самостійно від ідеї до MVP.
             </p>
-            <p>
+            <p data-i18n="case.tt.p2">
               Cubit/Bloc, Clean Architecture, Firebase Auth, зв’язування пари за кодом, Supabase
               для даних і синхронізації.
             </p>
@@ -677,13 +898,13 @@
     <section class="section" id="review">
       <div class="wrap">
         <div class="section-head">
-          <h2>Відгук</h2>
-          <p>З Freelancehunt</p>
+          <h2 data-i18n="review.title">Відгук</h2>
+          <p data-i18n="review.lead">З Freelancehunt</p>
         </div>
         <div class="quote-block">
           <div class="quote-mark" aria-hidden="true">“</div>
-          <p class="quote">Якісна та швидка робота. Рекомендую виконавця!</p>
-          <p class="quote-meta">Сергій Бабак · «Додаток-скан» · 5.0</p>
+          <p class="quote" data-i18n="review.quote">Якісна та швидка робота. Рекомендую виконавця!</p>
+          <p class="quote-meta" data-i18n="review.meta">Сергій Бабак · «Додаток-скан» · 5.0</p>
         </div>
       </div>
     </section>
@@ -691,14 +912,14 @@
     <section class="section" id="languages">
       <div class="wrap">
         <div class="section-head">
-          <h2>Мови</h2>
-          <p>Спілкування з командою й клієнтами</p>
+          <h2 data-i18n="languages.title">Мови</h2>
+          <p data-i18n="languages.lead">Спілкування з командою й клієнтами</p>
         </div>
         <div class="langs">
-          <div class="lang"><strong>Українська</strong><span>носій</span></div>
-          <div class="lang"><strong>Русский</strong><span>продвинутий</span></div>
-          <div class="lang"><strong>English</strong><span>середній</span></div>
-          <div class="lang"><strong>Slovenčina</strong><span>початковий</span></div>
+          <div class="lang"><strong data-i18n="lang.uk">Українська</strong><span data-i18n="lang.uk_level">носій</span></div>
+          <div class="lang"><strong data-i18n="lang.ru">Русский</strong><span data-i18n="lang.ru_level">продвинутий</span></div>
+          <div class="lang"><strong data-i18n="lang.en">English</strong><span data-i18n="lang.en_level">середній</span></div>
+          <div class="lang"><strong data-i18n="lang.sk">Slovenčina</strong><span data-i18n="lang.sk_level">початковий</span></div>
         </div>
       </div>
     </section>
@@ -708,11 +929,62 @@
         <span>© Максим Северенко (Severmax)</span>
         <span>
           <a href="https://github.com/Severmax">GitHub</a>
-          ·
-          <a href="https://severmax.github.io/bosstapper-privacy/">Privacy — Boss Tapper</a>
         </span>
       </footer>
     </div>
   </div>
+
+  <div class="modal" id="contact-modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+      <h2 id="contact-title" data-i18n="modal.title">Написати</h2>
+      <p data-i18n="modal.lead">Оберіть зручний спосіб зв’язку.</p>
+      <div class="modal-options">
+        <a class="modal-option" href="https://t.me/Severmax7" target="_blank" rel="noopener noreferrer">
+          <strong>Telegram</strong>
+          <span>@Severmax7</span>
+        </a>
+        <a class="modal-option" href="mailto:severenko.maxim@gmail.com">
+          <strong>Email</strong>
+          <span>severenko.maxim@gmail.com</span>
+        </a>
+      </div>
+      <button class="modal-close" type="button" id="close-contact" data-i18n="modal.close">Закрити</button>
+    </div>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script>
+    (function () {
+      var modal = document.getElementById("contact-modal");
+      var openBtn = document.getElementById("open-contact");
+      var closeBtn = document.getElementById("close-contact");
+      if (!modal || !openBtn || !closeBtn) return;
+
+      function openModal() {
+        modal.hidden = false;
+        requestAnimationFrame(function () {
+          modal.classList.add("is-open");
+        });
+        closeBtn.focus();
+      }
+
+      function closeModal() {
+        modal.classList.remove("is-open");
+        setTimeout(function () {
+          modal.hidden = true;
+        }, 220);
+        openBtn.focus();
+      }
+
+      openBtn.addEventListener("click", openModal);
+      closeBtn.addEventListener("click", closeModal);
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) closeModal();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+      });
+    })();
+  </script>
 </body>
 </html>
